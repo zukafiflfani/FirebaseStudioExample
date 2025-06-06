@@ -1,11 +1,13 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, GalleryHorizontalEnd, Bus, MonitorPlay, Mail, Phone, MapPin } from 'lucide-react';
 import { APP_NAME, WORKS_DATA } from '@/lib/constants';
-import WorksSlideshow from '@/components/works/WorksSlideshow';
-import ContactFormComponent from '@/components/contact/ContactForm';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const services = [
   {
@@ -24,6 +26,28 @@ const services = [
     description: 'Dynamic and engaging content for digital outdoor advertising screens.',
   },
 ];
+
+const WorksSlideshow = dynamic(() => import('@/components/works/WorksSlideshow'), {
+  loading: () => (
+    <div className="flex justify-center items-center h-64">
+      <p>Loading slideshow...</p>
+    </div>
+  ),
+  ssr: false, // Usually good for client-interactive components like carousels
+});
+
+const ContactFormComponent = dynamic(() => import('@/components/contact/ContactForm'), {
+  loading: () => (
+    <div className="space-y-8 max-w-xl mx-auto bg-card p-8 rounded-lg shadow-xl">
+      <Skeleton className="h-10 w-full" />
+      <Skeleton className="h-10 w-full" />
+      <Skeleton className="h-24 w-full" />
+      <Skeleton className="h-10 w-full" />
+    </div>
+  ),
+  ssr: false, // Forms are interactive, so client-side rendering is fine
+});
+
 
 export default function HomePage() {
   const featuredWorks = WORKS_DATA.slice(0, 2);
