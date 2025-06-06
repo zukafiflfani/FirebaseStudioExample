@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'AdCraft Studio',
@@ -24,11 +25,13 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&display=swap" rel="stylesheet" />
       </head>
       <body 
-        className="font-body antialiased flex flex-col h-screen" 
+        className={cn(
+          "font-body antialiased flex flex-col h-full"
+        )}
       >
         <Header />
         <main 
-          className="flex-grow container mx-auto px-4 py-8 overflow-y-auto scroll-smooth"
+          className="flex-grow container mx-auto px-4 py-8 overflow-y-auto scroll-smooth scrollbar-hide"
           style={{ scrollPaddingTop: '4rem' }} // Adjust '4rem' if header height is different
         >
           {children}
