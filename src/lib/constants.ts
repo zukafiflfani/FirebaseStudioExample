@@ -5,7 +5,6 @@ export const APP_NAME = "AdCraft Studio";
 export const NAV_LINKS: NavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/works', label: 'Our Works' },
-  { href: '/ai-suggester', label: 'AI Ad Suggester' },
   { href: '/contact', label: 'Contact Us' },
 ];
 

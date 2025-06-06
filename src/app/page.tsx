@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Lightbulb, GalleryHorizontalEnd, Bus, MonitorPlay } from 'lucide-react';
+import { ArrowRight, GalleryHorizontalEnd, Bus, MonitorPlay } from 'lucide-react';
 import { APP_NAME, WORKS_DATA } from '@/lib/constants';
 
 const services = [
@@ -107,22 +107,6 @@ export default function HomePage() {
         <div className="text-center mt-12">
           <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
             <Link href="/works">Explore All Works <ArrowRight className="ml-2 h-5 w-5" /></Link>
-          </Button>
-        </div>
-      </section>
-
-      {/* AI Tool Teaser */}
-      <section className="bg-card py-16 md:py-20 rounded-lg shadow-lg">
-        <div className="container mx-auto px-4 text-center">
-          <Lightbulb className="h-16 w-16 text-primary mx-auto mb-6" />
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Unlock Creative Ad Copy</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Use our innovative AI-powered tool to generate compelling ad copy suggestions based on your target location.
-          </p>
-          <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/ai-suggester">
-              Try AI Ad Suggester <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
           </Button>
         </div>
       </section>

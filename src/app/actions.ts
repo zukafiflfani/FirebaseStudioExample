@@ -1,7 +1,6 @@
 'use server';
 
 import { z } from 'zod';
-import { suggestAdCopy, type SuggestAdCopyInput } from '@/ai/flows/suggest-ad-copy';
 
 // Schema for contact form
 const ContactFormSchema = z.object({
@@ -46,35 +45,4 @@ export async function handleContactFormSubmit(
     message: 'Thank you for your message! We will get back to you soon.',
     success: true,
   };
-}
-
-
-// AI Ad Copy Suggester Action
-export type AdCopyState = {
-  suggestions?: string[];
-  error?: string;
-  isLoading: boolean;
-};
-
-export async function getAdCopySuggestionsAction(
-  photoDataUri: string
-): Promise<AdCopyState> {
-  if (!photoDataUri || !photoDataUri.startsWith('data:image')) {
-    return { error: 'Invalid image data provided.', isLoading: false };
-  }
-
-  try {
-    const input: SuggestAdCopyInput = { photoDataUri };
-    const result = await suggestAdCopy(input);
-    
-    if (result.adCopySuggestions && result.adCopySuggestions.length > 0) {
-      return { suggestions: result.adCopySuggestions, isLoading: false };
-    } else {
-      return { error: 'No suggestions could be generated. Try a different image.', isLoading: false };
-    }
-  } catch (e) {
-    console.error("Error getting ad copy suggestions:", e);
-    const errorMessage = e instanceof Error ? e.message : 'An unknown error occurred while generating ad copy.';
-    return { error: `Failed to generate ad copy: ${errorMessage}`, isLoading: false };
-  }
 }
