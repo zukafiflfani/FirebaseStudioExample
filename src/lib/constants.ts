@@ -3,9 +3,9 @@ import type { NavLink, WorkItem } from '@/types';
 export const APP_NAME = "AdCraft Studio";
 
 export const NAV_LINKS: NavLink[] = [
-  { href: '/', label: 'Home' },
-  { href: '/works', label: 'Our Works' },
-  { href: '/contact', label: 'Contact Us' },
+  { href: '/#home', label: 'Home' },
+  { href: '/#works', label: 'Our Works' },
+  { href: '/#contact', label: 'Contact Us' },
 ];
 
 export const WORKS_DATA: WorkItem[] = [
