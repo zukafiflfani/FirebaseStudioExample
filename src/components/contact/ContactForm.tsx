@@ -1,10 +1,10 @@
+
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useFormState } from 'react-dom';
+import { useActionState, useEffect } from 'react'; // Changed from 'react-dom' and useFormState
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useEffect } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -36,7 +36,8 @@ const initialState: ContactFormState = {
 
 export default function ContactFormComponent() {
   const { toast } = useToast();
-  const [state, formAction] = useFormState(handleContactFormSubmit, initialState);
+  // Changed useFormState to useActionState
+  const [state, formAction, isPending] = useActionState(handleContactFormSubmit, initialState);
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -111,10 +112,11 @@ export default function ContactFormComponent() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" disabled={form.formState.isSubmitting}>
-          <Send className="mr-2 h-4 w-4" /> Send Message
+        <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" disabled={isPending}>
+          <Send className="mr-2 h-4 w-4" /> {isPending ? 'Sending...' : 'Send Message'}
         </Button>
       </form>
     </Form>
   );
 }
+
