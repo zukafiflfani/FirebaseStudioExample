@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: 'AdCraft Studio',
+  title: 'AD TIME',
   description: 'Outdoor Ad Maker Company',
 };
 
@@ -32,7 +32,7 @@ export default function RootLayout({
         <Header />
         <main 
           className="flex-grow container mx-auto px-4 py-8 overflow-y-auto scroll-smooth scrollbar-hide"
-          style={{ scrollPaddingTop: '4rem' }} // Adjust '4rem' if header height is different
+          style={{ scrollPaddingTop: '4rem' }} 
         >
           {children}
         </main>

@@ -20,9 +20,24 @@ export default function Header() {
     const updateHash = () => {
       setActiveHash(window.location.hash);
     };
-    updateHash(); // Initial check
+    updateHash(); 
     window.addEventListener('hashchange', updateHash, false);
     
+    const currentHash = window.location.hash;
+    if (currentHash) {
+      setActiveHash(currentHash);
+      const targetElement = document.getElementById(currentHash.substring(1));
+      if (targetElement) {
+        // setTimeout to ensure layout is stable after initial render
+        setTimeout(() => {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      // Default to #home if no hash
+      setActiveHash('#home');
+    }
+
     return () => {
       window.removeEventListener('hashchange', updateHash, false);
     };
@@ -59,7 +74,7 @@ export default function Header() {
           onClick={(e) => handleSmoothScroll(e, '/#home')}
           aria-label={`${APP_NAME} homepage`}
         >
-          <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={120} height={32} priority style={{ objectFit: 'contain' }} />
+          <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={40} height={40} priority style={{ objectFit: 'contain' }} />
         </Link>
 
         {/* Desktop Navigation */}
@@ -67,7 +82,7 @@ export default function Header() {
           {NAV_LINKS.map((link) => {
             const linkPath = link.href.startsWith('/') ? link.href : `/${link.href}`;
             const linkHash = linkPath.includes('#') ? linkPath.substring(linkPath.indexOf('#')) : '';
-            const isActive = pathname === '/' && activeHash === linkHash;
+            const isActive = (pathname === '/' || pathname === '') && activeHash === linkHash;
             return (
               <Link
                 key={link.label}
@@ -97,17 +112,20 @@ export default function Header() {
               <div className="p-6">
                 <Link
                   href="/#home"
-                  onClick={(e) => handleSmoothScroll(e, '/#home')}
+                  onClick={(e) => {
+                    handleSmoothScroll(e, '/#home');
+                    setMobileMenuOpen(false);
+                  }}
                   aria-label={`${APP_NAME} homepage`}
                   className="mb-8 block"
                 >
-                  <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={120} height={32} priority style={{ objectFit: 'contain' }} />
+                  <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={40} height={40} priority style={{ objectFit: 'contain' }} />
                 </Link>
                 <nav className="flex flex-col space-y-6">
                   {NAV_LINKS.map((link) => {
                     const linkPath = link.href.startsWith('/') ? link.href : `/${link.href}`;
                     const linkHash = linkPath.includes('#') ? linkPath.substring(linkPath.indexOf('#')) : '';
-                    const isActive = pathname === '/' && activeHash === linkHash;
+                    const isActive = (pathname === '/' || pathname === '') && activeHash === linkHash;
                     return (
                       <Link
                         key={link.label}

@@ -1,6 +1,7 @@
+
 import type { NavLink, WorkItem } from '@/types';
 
-export const APP_NAME = "AdCraft Studio";
+export const APP_NAME = "AD TIME";
 
 export const NAV_LINKS: NavLink[] = [
   { href: '/#home', label: 'Home' },
