@@ -5,13 +5,13 @@
 @layer base {
   :root {
     --background: 38 17% 94%; /* #F2F0EC soft off-white */
-    --foreground: 0 0% 20%; /* #333333 dark gray */
+    --foreground: 0 0% 10%; /* #1A1A1A very dark gray - Was 0 0% 20% */
 
     --card: 0 0% 100%; /* White for cards */
-    --card-foreground: 0 0% 20%; /* Dark gray text on cards */
+    --card-foreground: 0 0% 10%; /* #1A1A1A very dark gray - Was 0 0% 20% */
 
     --popover: 0 0% 100%; /* White for popovers */
-    --popover-foreground: 0 0% 20%; /* Dark gray text on popovers */
+    --popover-foreground: 0 0% 10%; /* #1A1A1A very dark gray - Was 0 0% 20% */
 
     --primary: 357 68% 46%; /* #C8232B rich red */
     --primary-foreground: 0 0% 100%; /* White text on primary */
@@ -20,7 +20,7 @@
     --secondary-foreground: 357 68% 46%; /* Primary red for text on secondary */
 
     --muted: 38 10% 90%; /* For muted elements */
-    --muted-foreground: 0 0% 45.1%; /* Default muted foreground */
+    --muted-foreground: 0 0% 35%; /* #595959 darker gray - Was 0 0% 45.1% */
 
     --accent: 357 72% 36%; /* #A21922 deep red for buttons etc. */
     --accent-foreground: 0 0% 100%; /* White text on accent */
