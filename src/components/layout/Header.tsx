@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'; // Added SheetTitle
 import { NAV_LINKS, APP_NAME } from '@/lib/constants';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
@@ -78,7 +78,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 items-center"> {/* Increased space-x and ensured items-center */}
+        <nav className="hidden md:flex space-x-8 items-center">
           {NAV_LINKS.map((link) => {
             const linkPath = link.href.startsWith('/') ? link.href : `/${link.href}`;
             const linkHash = linkPath.includes('#') ? linkPath.substring(linkPath.indexOf('#')) : '';
@@ -89,7 +89,7 @@ export default function Header() {
                 href={linkPath}
                 onClick={(e) => handleSmoothScroll(e, linkPath)}
                 className={cn(
-                  "text-foreground hover:text-primary transition-colors font-medium text-lg", // Added text-lg
+                  "text-foreground hover:text-primary transition-colors font-medium text-lg", 
                   isActive ? "text-primary" : ""
                 )}
               >
@@ -109,6 +109,7 @@ export default function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-[250px] sm:w-[300px] bg-background">
+              <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
               <div className="p-6">
                 <Link
                   href="/#home"
