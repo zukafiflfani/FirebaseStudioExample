@@ -33,7 +33,7 @@ const WorksSlideshow = dynamic(() => import('@/components/works/WorksSlideshow')
       <p>Loading slideshow...</p>
     </div>
   ),
-  ssr: false, // Usually good for client-interactive components like carousels
+  ssr: false, 
 });
 
 const ContactFormComponent = dynamic(() => import('@/components/contact/ContactForm'), {
@@ -45,7 +45,7 @@ const ContactFormComponent = dynamic(() => import('@/components/contact/ContactF
       <Skeleton className="h-10 w-full" />
     </div>
   ),
-  ssr: false, // Forms are interactive, so client-side rendering is fine
+  ssr: false, 
 });
 
 
@@ -57,12 +57,13 @@ export default function HomePage() {
       {/* Hero Section */}
       <section id="home" className="relative text-center py-16 md:py-24 rounded-lg overflow-hidden bg-secondary">
         <Image
-          src="https://placehold.co/1200x500.png"
-          alt="Outdoor advertising collage"
+          src="/hero-background.jpg"
+          alt="Brightly lit billboards at night in a city square"
           layout="fill"
           objectFit="cover"
           className="opacity-20"
-          data-ai-hint="outdoor advertising"
+          data-ai-hint="night billboards"
+          priority
         />
         <div className="relative z-10 container mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-primary">
