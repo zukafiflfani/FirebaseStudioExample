@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -28,7 +29,7 @@ export default function WorksSlideshow() {
       className="w-full max-w-4xl mx-auto"
     >
       <CarouselContent>
-        {WORKS_DATA.map((work: WorkItem) => (
+        {WORKS_DATA.map((work: WorkItem, index: number) => (
           <CarouselItem key={work.id} className="md:basis-1/2 lg:basis-1/3">
             <div className="p-1 h-full">
               <Card className="h-full flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -40,6 +41,8 @@ export default function WorksSlideshow() {
                     style={{ objectFit: 'cover' }}
                     className="rounded-t-lg"
                     data-ai-hint={work.aiHint}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={index === 0} // Add priority to the first image
                   />
                 </div>
                 <CardHeader>
