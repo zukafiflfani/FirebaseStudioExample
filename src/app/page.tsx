@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -57,12 +58,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <section id="home" className="relative text-center py-16 md:py-24 rounded-lg overflow-hidden bg-secondary">
         <Image
-          src="/hero-background.jpg"
-          alt="Brightly lit billboards at night in a city square"
+          src="/hero-background.svg" // Changed to .svg
+          alt="AD TIME branded background" // Updated alt text
           layout="fill"
           objectFit="cover"
           className="opacity-20"
-          data-ai-hint="night billboards"
+          data-ai-hint="brand pattern" // Updated AI hint
           priority
         />
         <div className="relative z-10 container mx-auto px-4">
