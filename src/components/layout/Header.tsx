@@ -2,6 +2,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -22,10 +23,6 @@ export default function Header() {
     updateHash(); // Initial check
     window.addEventListener('hashchange', updateHash, false);
     
-    // Optional: More advanced active link highlighting based on scroll position
-    // would require a scroll event listener and intersection observer.
-    // For now, hashchange is sufficient for click-based navigation.
-
     return () => {
       window.removeEventListener('hashchange', updateHash, false);
     };
@@ -37,13 +34,12 @@ export default function Header() {
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
-      // Manually update the URL hash. This helps with history and activeHash state.
       if (history.pushState) {
         history.pushState(null, '', `#${targetId}`);
       } else {
         window.location.hash = `#${targetId}`;
       }
-      setActiveHash(`#${targetId}`); // Update state for immediate re-render of active link
+      setActiveHash(`#${targetId}`); 
 
       targetElement.scrollIntoView({
         behavior: 'smooth',
@@ -51,7 +47,7 @@ export default function Header() {
     }
 
     if (mobileMenuOpen) {
-      setMobileMenuOpen(false); // Close mobile menu after clicking a link
+      setMobileMenuOpen(false); 
     }
   };
 
@@ -60,22 +56,23 @@ export default function Header() {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link
           href="/#home"
-          className="text-2xl font-headline font-bold text-primary"
           onClick={(e) => handleSmoothScroll(e, '/#home')}
+          aria-label={`${APP_NAME} homepage`}
         >
-          {APP_NAME}
+          <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={120} height={32} priority style={{ objectFit: 'contain' }} />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-6">
           {NAV_LINKS.map((link) => {
-            const linkHash = link.href.substring(link.href.indexOf('#'));
+            const linkPath = link.href.startsWith('/') ? link.href : `/${link.href}`;
+            const linkHash = linkPath.includes('#') ? linkPath.substring(linkPath.indexOf('#')) : '';
             const isActive = pathname === '/' && activeHash === linkHash;
             return (
               <Link
                 key={link.label}
-                href={link.href}
-                onClick={(e) => handleSmoothScroll(e, link.href)}
+                href={linkPath}
+                onClick={(e) => handleSmoothScroll(e, linkPath)}
                 className={cn(
                   "text-foreground hover:text-primary transition-colors font-medium",
                   isActive ? "text-primary" : ""
@@ -100,20 +97,22 @@ export default function Header() {
               <div className="p-6">
                 <Link
                   href="/#home"
-                  className="text-2xl font-headline font-bold text-primary mb-8 block"
                   onClick={(e) => handleSmoothScroll(e, '/#home')}
+                  aria-label={`${APP_NAME} homepage`}
+                  className="mb-8 block"
                 >
-                  {APP_NAME}
+                  <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={120} height={32} priority style={{ objectFit: 'contain' }} />
                 </Link>
                 <nav className="flex flex-col space-y-6">
                   {NAV_LINKS.map((link) => {
-                    const linkHash = link.href.substring(link.href.indexOf('#'));
+                    const linkPath = link.href.startsWith('/') ? link.href : `/${link.href}`;
+                    const linkHash = linkPath.includes('#') ? linkPath.substring(linkPath.indexOf('#')) : '';
                     const isActive = pathname === '/' && activeHash === linkHash;
                     return (
                       <Link
                         key={link.label}
-                        href={link.href}
-                        onClick={(e) => handleSmoothScroll(e, link.href)}
+                        href={linkPath}
+                        onClick={(e) => handleSmoothScroll(e, linkPath)}
                         className={cn(
                           "text-lg text-foreground hover:text-primary transition-colors",
                           isActive ? "text-primary font-semibold" : ""
