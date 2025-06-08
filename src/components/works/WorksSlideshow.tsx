@@ -42,7 +42,8 @@ export default function WorksSlideshow() {
                     className="rounded-t-lg"
                     data-ai-hint={work.aiHint}
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={index === 0} // Add priority to the first image
+                    priority={index === 0}
+                    loading={index !== 0 ? "lazy" : undefined} // Explicitly lazy for non-priority, priority implies eager
                   />
                 </div>
                 <CardHeader>
