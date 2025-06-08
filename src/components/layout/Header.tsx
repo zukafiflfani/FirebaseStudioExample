@@ -78,7 +78,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6">
+        <nav className="hidden md:flex space-x-8 items-center"> {/* Increased space-x and ensured items-center */}
           {NAV_LINKS.map((link) => {
             const linkPath = link.href.startsWith('/') ? link.href : `/${link.href}`;
             const linkHash = linkPath.includes('#') ? linkPath.substring(linkPath.indexOf('#')) : '';
@@ -89,7 +89,7 @@ export default function Header() {
                 href={linkPath}
                 onClick={(e) => handleSmoothScroll(e, linkPath)}
                 className={cn(
-                  "text-foreground hover:text-primary transition-colors font-medium",
+                  "text-foreground hover:text-primary transition-colors font-medium text-lg", // Added text-lg
                   isActive ? "text-primary" : ""
                 )}
               >
