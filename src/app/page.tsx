@@ -51,19 +51,17 @@ const ContactFormComponent = dynamic(() => import('@/components/contact/ContactF
 
 
 export default function HomePage() {
-  const featuredWorks = WORKS_DATA.slice(0, 2);
-
   return (
     <div className="space-y-16 md:space-y-24">
       {/* Hero Section */}
       <section id="home" className="relative text-center py-16 md:py-24 rounded-lg overflow-hidden bg-secondary">
         <Image
-          src="/hero-background.svg" // Changed to .svg
-          alt="AD TIME branded background" // Updated alt text
+          src="/hero-background.svg"
+          alt="AD TIME branded background"
           layout="fill"
           objectFit="cover"
           className="opacity-20"
-          data-ai-hint="brand pattern" // Updated AI hint
+          data-ai-hint="brand pattern"
           priority
         />
         <div className="relative z-10 container mx-auto px-4">
@@ -103,39 +101,6 @@ export default function HomePage() {
               </CardContent>
             </Card>
           ))}
-        </div>
-      </section>
-
-      {/* Featured Works Preview */}
-      <section className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Featured Works</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {featuredWorks.map((work) => (
-            <Card key={work.id} className="overflow-hidden shadow-lg">
-              <Image
-                src={work.imageUrl}
-                alt={work.title}
-                width={800}
-                height={600}
-                className="w-full h-64 object-cover"
-                data-ai-hint={work.aiHint}
-              />
-              <CardHeader>
-                <CardTitle>{work.title}</CardTitle>
-                <CardDescription>{work.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                 <Button asChild variant="link" className="text-primary p-0">
-                    <Link href="/#works">Learn More <ArrowRight className="ml-2 h-4 w-4" /></Link>
-                 </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        <div className="text-center mt-12">
-          <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
-            <Link href="/#works">Explore All Works <ArrowRight className="ml-2 h-5 w-5" /></Link>
-          </Button>
         </div>
       </section>
 
