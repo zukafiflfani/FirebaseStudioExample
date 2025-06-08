@@ -49,7 +49,7 @@ export default function WorksSlideshow() {
                   <CardDescription>{work.description}</CardDescription>
                 </CardContent>
                 <CardFooter>
-                  <p className="text-xs text-muted-foreground">Project ID: {work.id}</p>
+                  {/* Project ID removed as per request */}
                 </CardFooter>
               </Card>
             </div>
