@@ -74,7 +74,7 @@ export default function Header() {
           onClick={(e) => handleSmoothScroll(e, '/#home')}
           aria-label={`${APP_NAME} homepage`}
         >
-          <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={60} height={60} priority style={{ objectFit: 'contain' }} />
+          <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={80} height={80} priority style={{ objectFit: 'contain' }} />
         </Link>
 
         {/* Desktop Navigation */}
@@ -119,7 +119,7 @@ export default function Header() {
                   aria-label={`${APP_NAME} homepage`}
                   className="mb-8 block"
                 >
-                  <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={60} height={60} priority style={{ objectFit: 'contain' }} />
+                  <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={80} height={80} priority style={{ objectFit: 'contain' }} />
                 </Link>
                 <nav className="flex flex-col space-y-6">
                   {NAV_LINKS.map((link) => {
