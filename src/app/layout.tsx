@@ -5,9 +5,10 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from '@/lib/utils';
+import { LanguageProvider } from '@/contexts/LanguageContext';
 
 export const metadata: Metadata = {
-  title: 'AD TIME',
+  title: 'AD TIME', // This title remains static for now
   description: 'Outdoor Ad Maker Company',
 };
 
@@ -29,15 +30,17 @@ export default function RootLayout({
           "font-body antialiased flex flex-col h-full"
         )}
       >
-        <Header />
-        <main 
-          className="flex-grow container mx-auto px-4 py-8 overflow-y-auto scroll-smooth scrollbar-hide"
-          style={{ scrollPaddingTop: '4rem' }} 
-        >
-          {children}
-        </main>
-        <Footer />
-        <Toaster />
+        <LanguageProvider>
+          <Header />
+          <main 
+            className="flex-grow container mx-auto px-4 py-8 overflow-y-auto scroll-smooth scrollbar-hide"
+            style={{ scrollPaddingTop: '4rem' }} 
+          >
+            {children}
+          </main>
+          <Footer />
+          <Toaster />
+        </LanguageProvider>
       </body>
     </html>
   );

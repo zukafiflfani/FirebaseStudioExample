@@ -3,24 +3,26 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu } from 'lucide-react';
+import { Menu, Languages } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'; // Added SheetTitle
-import { NAV_LINKS, APP_NAME } from '@/lib/constants';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
+import { NAV_LINKS_CONFIG } from '@/lib/constants';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import React, { useState, useEffect, MouseEvent as ReactMouseEvent } from 'react';
+import { useLanguage } from '@/hooks/useLanguage';
 
 export default function Header() {
   const pathname = usePathname();
   const [activeHash, setActiveHash] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t, isLoading } = useLanguage();
 
   useEffect(() => {
     const updateHash = () => {
       setActiveHash(window.location.hash);
     };
-    updateHash(); 
+    updateHash();
     window.addEventListener('hashchange', updateHash, false);
     
     const currentHash = window.location.hash;
@@ -28,13 +30,11 @@ export default function Header() {
       setActiveHash(currentHash);
       const targetElement = document.getElementById(currentHash.substring(1));
       if (targetElement) {
-        // setTimeout to ensure layout is stable after initial render
         setTimeout(() => {
           targetElement.scrollIntoView({ behavior: 'smooth' });
         }, 100);
       }
     } else {
-      // Default to #home if no hash
       setActiveHash('#home');
     }
 
@@ -66,26 +66,42 @@ export default function Header() {
     }
   };
 
+  const toggleLanguage = () => {
+    setLanguage(language === 'en' ? 'ka' : 'en');
+  };
+  
+  if (isLoading) {
+    // You might want a more sophisticated loading state here
+    return (
+      <header className="bg-card shadow-md sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div>Loading...</div>
+        </div>
+      </header>
+    );
+  }
+
+  const appName = t('appName');
+
   return (
     <header className="bg-card shadow-md sticky top-0 z-50">
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <Link
           href="/#home"
           onClick={(e) => handleSmoothScroll(e, '/#home')}
-          aria-label={`${APP_NAME} homepage`}
+          aria-label={`${appName} homepage`}
         >
-          <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={80} height={80} priority style={{ objectFit: 'contain' }} />
+          <Image src="/logo.png" alt={`${appName} Logo`} width={80} height={80} priority style={{ objectFit: 'contain' }} />
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 items-center">
-          {NAV_LINKS.map((link) => {
+        <nav className="hidden md:flex space-x-6 items-center">
+          {NAV_LINKS_CONFIG.map((link) => {
             const linkPath = link.href.startsWith('/') ? link.href : `/${link.href}`;
             const linkHash = linkPath.includes('#') ? linkPath.substring(linkPath.indexOf('#')) : '';
             const isActive = (pathname === '/' || pathname === '') && activeHash === linkHash;
             return (
               <Link
-                key={link.label}
+                key={link.labelKey}
                 href={linkPath}
                 onClick={(e) => handleSmoothScroll(e, linkPath)}
                 className={cn(
@@ -93,14 +109,21 @@ export default function Header() {
                   isActive ? "text-primary" : ""
                 )}
               >
-                {link.label}
+                {t(link.labelKey)}
               </Link>
             );
           })}
+          <Button variant="outline" size="sm" onClick={toggleLanguage} className="ml-4">
+            <Languages className="h-4 w-4 mr-2" />
+            {language === 'en' ? t('language.toggle.en') : t('language.toggle.ka')}
+          </Button>
         </nav>
 
-        {/* Mobile Navigation */}
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center">
+          <Button variant="ghost" size="icon" onClick={toggleLanguage} className="mr-2">
+            <Languages className="h-5 w-5 text-primary" />
+             <span className="sr-only">{language === 'en' ? t('language.toggle.en') : t('language.toggle.ka')}</span>
+          </Button>
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="outline" size="icon" onClick={() => setMobileMenuOpen(true)}>
@@ -117,19 +140,19 @@ export default function Header() {
                     handleSmoothScroll(e, '/#home');
                     setMobileMenuOpen(false);
                   }}
-                  aria-label={`${APP_NAME} homepage`}
+                  aria-label={`${appName} homepage`}
                   className="mb-8 block"
                 >
-                  <Image src="/logo.png" alt={`${APP_NAME} Logo`} width={80} height={80} priority style={{ objectFit: 'contain' }} />
+                  <Image src="/logo.png" alt={`${appName} Logo`} width={80} height={80} priority style={{ objectFit: 'contain' }} />
                 </Link>
                 <nav className="flex flex-col space-y-6">
-                  {NAV_LINKS.map((link) => {
+                  {NAV_LINKS_CONFIG.map((link) => {
                     const linkPath = link.href.startsWith('/') ? link.href : `/${link.href}`;
                     const linkHash = linkPath.includes('#') ? linkPath.substring(linkPath.indexOf('#')) : '';
                     const isActive = (pathname === '/' || pathname === '') && activeHash === linkHash;
                     return (
                       <Link
-                        key={link.label}
+                        key={link.labelKey}
                         href={linkPath}
                         onClick={(e) => handleSmoothScroll(e, linkPath)}
                         className={cn(
@@ -137,7 +160,7 @@ export default function Header() {
                           isActive ? "text-primary font-semibold" : ""
                         )}
                       >
-                        {link.label}
+                        {t(link.labelKey)}
                       </Link>
                     );
                   })}

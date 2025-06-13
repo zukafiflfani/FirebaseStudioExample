@@ -7,24 +7,24 @@ import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, GalleryHorizontalEnd, Bus, MonitorPlay, Mail, Phone, MapPin } from 'lucide-react';
-import { APP_NAME, WORKS_DATA } from '@/lib/constants';
 import { Skeleton } from '@/components/ui/skeleton';
+import { useLanguage } from '@/hooks/useLanguage';
 
-const services = [
+const servicesData = [
   {
     icon: <GalleryHorizontalEnd className="h-10 w-10 text-primary mb-4" />,
-    title: 'Billboard Design',
-    description: 'Eye-catching designs for maximum impact on large-scale billboards.',
+    titleKey: 'expertise.billboard.title',
+    descriptionKey: 'expertise.billboard.description',
   },
   {
     icon: <Bus className="h-10 w-10 text-primary mb-4" />,
-    title: 'Transit Ads',
-    description: 'Creative advertising solutions for buses, trains, and transit shelters.',
+    titleKey: 'expertise.transit.title',
+    descriptionKey: 'expertise.transit.description',
   },
   {
     icon: <MonitorPlay className="h-10 w-10 text-primary mb-4" />,
-    title: 'Digital Displays',
-    description: 'Dynamic and engaging content for digital outdoor advertising screens.',
+    titleKey: 'expertise.digital.title',
+    descriptionKey: 'expertise.digital.description',
   },
 ];
 
@@ -51,13 +51,26 @@ const ContactFormComponent = dynamic(() => import('@/components/contact/ContactF
 
 
 export default function HomePage() {
+  const { t, isLoading, language } = useLanguage(); // Added language for potential key prop changes
+
+  if (isLoading) {
+    // Basic loading state, can be improved
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p>Loading content...</p>
+      </div>
+    );
+  }
+  
+  const appName = t('appName');
+
   return (
     <div className="space-y-16 md:space-y-24">
       {/* Hero Section */}
       <section id="home" className="relative text-center py-16 md:py-24 rounded-lg overflow-hidden bg-secondary">
         <Image
           src="/hero-background.svg"
-          alt="AD TIME branded background"
+          alt={t('appName') + ' branded background'}
           layout="fill"
           objectFit="cover"
           className="opacity-20"
@@ -66,20 +79,20 @@ export default function HomePage() {
         />
         <div className="relative z-10 container mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-primary">
-            Welcome to {APP_NAME}
+            {t('hero.welcome', { appName: appName })}
           </h1>
           <p className="text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8">
-            We craft innovative and impactful outdoor advertising solutions that capture attention and deliver results. Let us bring your brand to life in the great outdoors.
+            {t('hero.description')}
           </p>
           <div className="space-x-4">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
               <Link href="/#works">
-                View Our Work <ArrowRight className="ml-2 h-5 w-5" />
+                {t('hero.button.viewWork')} <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link href="/#contact">
-                Get in Touch
+                {t('hero.button.getInTouch')}
               </Link>
             </Button>
           </div>
@@ -88,16 +101,16 @@ export default function HomePage() {
 
       {/* Services Section */}
       <section className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Our Expertise</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">{t('expertise.title')}</h2>
         <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <Card key={service.title} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
+          {servicesData.map((service) => (
+            <Card key={service.titleKey + language} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
               <CardHeader>
                 <div className="flex justify-center">{service.icon}</div>
-                <CardTitle className="text-2xl">{service.title}</CardTitle>
+                <CardTitle className="text-2xl">{t(service.titleKey)}</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-muted-foreground">{service.description}</p>
+                <p className="text-muted-foreground">{t(service.descriptionKey)}</p>
               </CardContent>
             </Card>
           ))}
@@ -108,12 +121,12 @@ export default function HomePage() {
       <section id="works" className="py-16 md:py-20 bg-card">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">
-            Our Portfolio
+            {t('portfolio.title')}
           </h1>
           <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-            Explore a selection of our finest outdoor advertising campaigns. Each project showcases our commitment to creativity, quality, and impact.
+            {t('portfolio.description')}
           </p>
-          <WorksSlideshow />
+          <WorksSlideshow key={language} /> {/* Add key to re-render on language change if it uses translations internally */}
         </div>
       </section>
 
@@ -121,45 +134,45 @@ export default function HomePage() {
       <section id="contact" className="py-16 md:py-20 bg-secondary">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 text-primary">
-            Get In Touch
+            {t('contact.title')}
           </h1>
           <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-            We&apos;re excited to hear about your project! Fill out the form below, or reach out to us via phone or email.
+            {t('contact.description')}
           </p>
 
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
+              <h2 className="text-2xl font-semibold mb-6">{t('contact.info.title')}</h2>
               <div className="space-y-6">
                 <div className="flex items-start">
                   <MapPin className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
                   <div>
-                    <h3 className="font-semibold">Our Office</h3>
-                    <p className="text-muted-foreground">123 AdCraft Avenue, Creative City, CC 12345</p>
+                    <h3 className="font-semibold">{t('contact.info.office')}</h3>
+                    <p className="text-muted-foreground">{t('contact.info.officeAddress')}</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Mail className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
                   <div>
-                    <h3 className="font-semibold">Email Us</h3>
+                    <h3 className="font-semibold">{t('contact.info.emailUs')}</h3>
                     <a href="mailto:hello@adcraft.studio" className="text-muted-foreground hover:text-primary">hello@adcraft.studio</a>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Phone className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
                   <div>
-                    <h3 className="font-semibold">Call Us</h3>
+                    <h3 className="font-semibold">{t('contact.info.phoneUs')}</h3>
                     <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary">+1 (234) 567-890</a>
                   </div>
                 </div>
               </div>
               <p className="mt-8 text-sm text-muted-foreground">
-                Office Hours: Monday - Friday, 9:00 AM - 6:00 PM
+                {t('contact.info.officeHours')}
               </p>
             </div>
 
             <div>
-              <ContactFormComponent />
+              <ContactFormComponent key={language + 'form'} /> {/* Add key to re-render on language change for labels */}
             </div>
           </div>
         </div>

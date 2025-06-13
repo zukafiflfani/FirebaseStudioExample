@@ -1,56 +1,55 @@
 
-import type { NavLink, WorkItem } from '@/types';
+import type { NavLinkConfig, WorkItemConfig } from '@/types';
 
-export const APP_NAME = "AD TIME";
+// APP_NAME is now handled by translations: t('appName')
 
-export const NAV_LINKS: NavLink[] = [
-  { href: '/#home', label: 'Home' },
-  { href: '/#works', label: 'Our Works' },
-  { href: '/#contact', label: 'Contact Us' },
+export const NAV_LINKS_CONFIG: NavLinkConfig[] = [
+  { href: '/#home', labelKey: 'nav.home' },
+  { href: '/#works', labelKey: 'nav.ourWorks' },
+  { href: '/#contact', labelKey: 'nav.contactUs' },
 ];
 
-export const WORKS_DATA: WorkItem[] = [
+export const WORKS_DATA_CONFIG: WorkItemConfig[] = [
   {
     id: '1',
-    title: 'Urban Billboard Campaign',
-    description: 'A striking billboard design for downtown cityscapes, maximizing visibility and impact.',
-    imageUrl: '/works/IMG_0231.png',
+    titleKey: 'works.urbanBillboard.title',
+    descriptionKey: 'works.urbanBillboard.description',
+    imageUrl: '/works/city-billboard.png', // Make sure this image exists in public/works/
     aiHint: 'city billboard',
   },
   {
     id: '2',
-    title: 'Transit Advertising Solution',
-    description: 'Engaging bus and subway advertisements that capture the attention of commuters.',
-    imageUrl: '/works/IMG_0249.png',
+    titleKey: 'works.transitAd.title',
+    descriptionKey: 'works.transitAd.description',
+    imageUrl: '/works/bus-ad.png', // Make sure this image exists in public/works/
     aiHint: 'bus ad',
   },
   {
     id: '3',
-    title: 'Digital Display Innovation',
-    description: 'Dynamic content for digital screens in high-traffic public spaces.',
-    imageUrl: '/works/IMG_6649.png',
+    titleKey: 'works.digitalDisplay.title',
+    descriptionKey: 'works.digitalDisplay.description',
+    imageUrl: '/works/digital-display.png', // Make sure this image exists in public/works/
     aiHint: 'digital display',
   },
   {
     id: '4',
-    title: 'Retail Storefront Activation',
-    description: 'Creative window displays and outdoor signage for retail businesses.',
-    imageUrl: '/works/IMG_6816.png',
+    titleKey: 'works.retailStorefront.title',
+    descriptionKey: 'works.retailStorefront.description',
+    imageUrl: '/works/storefront-signage.png', // Make sure this image exists in public/works/
     aiHint: 'storefront signage',
   },
   {
     id: '5',
-    title: 'Stadium Banner Ads',
-    description: 'Large-format banners designed for maximum impact in sports stadiums.',
-    imageUrl: '/works/IMG_7598.png',
+    titleKey: 'works.stadiumBanner.title',
+    descriptionKey: 'works.stadiumBanner.description',
+    imageUrl: '/works/stadium-banner.png', // Make sure this image exists in public/works/
     aiHint: 'stadium banner',
   },
   {
     id: '6',
-    title: 'Event Ad Installations',
-    description: 'Custom outdoor advertising installations for events and festivals.',
-    imageUrl: '/works/IMG_8360.png',
+    titleKey: 'works.eventAd.title',
+    descriptionKey: 'works.eventAd.description',
+    imageUrl: '/works/event-installation.png', // Make sure this image exists in public/works/
     aiHint: 'event installation',
   },
 ];
-
