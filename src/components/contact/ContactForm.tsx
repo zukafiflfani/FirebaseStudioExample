@@ -55,13 +55,13 @@ export default function ContactFormComponent() {
       if (state.success) {
         toast({
           // Server action responses are not translated in this iteration
-          title: t('contact.form.toast.successTitle'),
+          title: t('contactFormToastSuccessTitle'),
           description: state.message, 
         });
         form.reset(); 
       } else {
         toast({
-          title: t('contact.form.toast.errorTitle'),
+          title: t('contactFormToastErrorTitle'),
           description: state.message || 'Failed to send message. Please try again.',
           variant: 'destructive',
         });
@@ -85,9 +85,9 @@ export default function ContactFormComponent() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('contact.form.nameLabel')}</FormLabel>
+              <FormLabel>{t('contactFormNameLabel')}</FormLabel>
               <FormControl>
-                <Input placeholder={t('contact.form.namePlaceholder')} {...field} />
+                <Input placeholder={t('contactFormNmePlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -98,9 +98,9 @@ export default function ContactFormComponent() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('contact.form.emailLabel')}</FormLabel>
+              <FormLabel>{t('contactFormEmailLabel')}</FormLabel>
               <FormControl>
-                <Input type="email" placeholder={t('contact.form.emailPlaceholder')} {...field} />
+                <Input type="email" placeholder={t('contactFormEmailPlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -111,10 +111,10 @@ export default function ContactFormComponent() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t('contact.form.messageLabel')}</FormLabel>
+              <FormLabel>{t('contactFormMessageLabel')}</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder={t('contact.form.messagePlaceholder')}
+                  placeholder={t('contactFormMessagePlaceholder')}
                   className="min-h-[120px]"
                   {...field}
                 />
@@ -125,7 +125,7 @@ export default function ContactFormComponent() {
         />
         <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-accent/90" disabled={isPending}>
           <Send className="mr-2 h-4 w-4" /> 
-          {isPending ? t('contact.form.button.sending') : t('contact.form.button.send')}
+          {isPending ? t('contactFormButtonSending') : t('contactFormButtonSend')}
         </Button>
       </form>
     </Form>

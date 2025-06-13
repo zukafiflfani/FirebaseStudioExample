@@ -13,18 +13,18 @@ import { useLanguage } from '@/hooks/useLanguage';
 const servicesData = [
   {
     icon: <GalleryHorizontalEnd className="h-10 w-10 text-primary mb-4" />,
-    titleKey: 'expertise.billboard.title',
-    descriptionKey: 'expertise.billboard.description',
+    titleKey: 'expertiseBillboardTitle',
+    descriptionKey: 'expertiseBillboardDescription',
   },
   {
     icon: <Bus className="h-10 w-10 text-primary mb-4" />,
-    titleKey: 'expertise.transit.title',
-    descriptionKey: 'expertise.transit.description',
+    titleKey: 'expertiseTransitTitle',
+    descriptionKey: 'expertiseTransitDescription',
   },
   {
     icon: <MonitorPlay className="h-10 w-10 text-primary mb-4" />,
-    titleKey: 'expertise.digital.title',
-    descriptionKey: 'expertise.digital.description',
+    titleKey: 'expertiseDigitalTitle',
+    descriptionKey: 'expertiseDigitalDescription',
   },
 ];
 
@@ -79,20 +79,20 @@ export default function HomePage() {
         />
         <div className="relative z-10 container mx-auto px-4">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-primary">
-            {t('hero.welcome', { appName: appName })}
+            {t('heroWelcome', { appName: appName })}
           </h1>
           <p className="text-lg md:text-xl text-foreground max-w-3xl mx-auto mb-8">
-            {t('hero.description')}
+            {t('heroDescription')}
           </p>
           <div className="space-x-4">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90">
               <Link href="/#works">
-                {t('hero.button.viewWork')} <ArrowRight className="ml-2 h-5 w-5" />
+                {t('heroButtonViewWork')} <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
               <Link href="/#contact">
-                {t('hero.button.getInTouch')}
+                {t('heroButtonGetInTouch')}
               </Link>
             </Button>
           </div>
@@ -101,7 +101,7 @@ export default function HomePage() {
 
       {/* Services Section */}
       <section className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">{t('expertise.title')}</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">{t('expertiseTitle')}</h2>
         <div className="grid md:grid-cols-3 gap-8">
           {servicesData.map((service) => (
             <Card key={service.titleKey + language} className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -121,10 +121,10 @@ export default function HomePage() {
       <section id="works" className="py-16 md:py-20 bg-card">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold text-center mb-12 text-primary">
-            {t('portfolio.title')}
+            {t('portfolioTitle')}
           </h1>
           <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-            {t('portfolio.description')}
+            {t('portfolioDescription')}
           </p>
           <WorksSlideshow key={language} /> {/* Add key to re-render on language change if it uses translations internally */}
         </div>
@@ -134,40 +134,40 @@ export default function HomePage() {
       <section id="contact" className="py-16 md:py-20 bg-secondary">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 text-primary">
-            {t('contact.title')}
+            {t('contactTitle')}
           </h1>
           <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-            {t('contact.description')}
+            {t('contactDescription')}
           </p>
 
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div>
-              <h2 className="text-2xl font-semibold mb-6">{t('contact.info.title')}</h2>
+              <h2 className="text-2xl font-semibold mb-6">{t('contactInfoTitle')}</h2>
               <div className="space-y-6">
                 <div className="flex items-start">
                   <MapPin className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
                   <div>
-                    <h3 className="font-semibold">{t('contact.info.office')}</h3>
-                    <p className="text-muted-foreground">{t('contact.info.officeAddress')}</p>
+                    <h3 className="font-semibold">{t('contactInfoOffice')}</h3>
+                    <p className="text-muted-foreground">{t('contactInfoOfficeAddress')}</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Mail className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
                   <div>
-                    <h3 className="font-semibold">{t('contact.info.emailUs')}</h3>
+                    <h3 className="font-semibold">{t('contactInfoEmailUs')}</h3>
                     <a href="mailto:hello@adcraft.studio" className="text-muted-foreground hover:text-primary">hello@adcraft.studio</a>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Phone className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
                   <div>
-                    <h3 className="font-semibold">{t('contact.info.phoneUs')}</h3>
+                    <h3 className="font-semibold">{t('contactInfoPhoneUs')}</h3>
                     <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary">+1 (234) 567-890</a>
                   </div>
                 </div>
               </div>
               <p className="mt-8 text-sm text-muted-foreground">
-                {t('contact.info.officeHours')}
+                {t('contactInfoOfficeHours')}
               </p>
             </div>
 

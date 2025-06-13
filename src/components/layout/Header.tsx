@@ -115,14 +115,14 @@ export default function Header() {
           })}
           <Button variant="outline" size="sm" onClick={toggleLanguage} className="ml-4">
             <Languages className="h-4 w-4 mr-2" />
-            {language === 'en' ? t('language.toggle.en') : t('language.toggle.ka')}
+            {language === 'en' ? t('languageToggleEn') : t('languageToggleKa')}
           </Button>
         </nav>
 
         <div className="md:hidden flex items-center">
           <Button variant="ghost" size="icon" onClick={toggleLanguage} className="mr-2">
             <Languages className="h-5 w-5 text-primary" />
-             <span className="sr-only">{language === 'en' ? t('language.toggle.en') : t('language.toggle.ka')}</span>
+             <span className="sr-only">{language === 'en' ? t('languageToggleEn') : t('languageToggleKa')}</span>
           </Button>
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>

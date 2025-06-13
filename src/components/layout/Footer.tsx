@@ -25,10 +25,10 @@ export default function Footer() {
     <footer className="bg-card text-muted-foreground py-8 border-t">
       <div className="container mx-auto px-4 text-center">
         <p className="flex items-center justify-center text-sm">
-          <Copyright className="h-4 w-4 mr-1" /> {t('footer.copyright', { currentYear, appName })}
+          <Copyright className="h-4 w-4 mr-1" /> {t('footerCopyright', { currentYear, appName })}
         </p>
         <p className="text-xs mt-2">
-          {t('footer.tagline')}
+          {t('footerTagline')}
         </p>
       </div>
     </footer>
