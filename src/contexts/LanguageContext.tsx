@@ -19,7 +19,7 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguageState] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>('ka'); // Changed default to 'ka'
   const [translations, setTranslations] = useState<Translations>({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -36,7 +36,19 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       console.error(error);
       // Fallback to English if loading fails for the selected language (except if English itself fails)
       if (lang !== 'en') {
-        await fetchTranslations('en');
+        // Attempt to load English as a fallback if the primary language fails
+        try {
+          const fallbackResponse = await fetch(`/locales/en.json`);
+          if (!fallbackResponse.ok) {
+            throw new Error(`Failed to load fallback English translations`);
+          }
+          const fallbackData = await fallbackResponse.json();
+          setTranslations(fallbackData);
+          setLanguageState('en'); // Explicitly set language to English if fallback is used
+        } catch (fallbackError) {
+          console.error(fallbackError);
+          setTranslations({}); // Empty translations if English also fails
+        }
       } else {
         setTranslations({}); // Empty translations if English fails
       }
