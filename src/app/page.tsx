@@ -6,7 +6,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, GalleryHorizontalEnd, Bus, MonitorPlay, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, GalleryHorizontalEnd, Bus, Monitor, Mail, Phone, MapPin } from 'lucide-react';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useLanguage } from '@/hooks/useLanguage';
 
@@ -22,7 +22,7 @@ const servicesData = [
     descriptionKey: 'expertiseTransitDescription',
   },
   {
-    icon: <MonitorPlay className="h-10 w-10 text-primary mb-4" />,
+    icon: <Monitor className="h-10 w-10 text-primary mb-4" />,
     titleKey: 'expertiseDigitalTitle',
     descriptionKey: 'expertiseDigitalDescription',
   },
