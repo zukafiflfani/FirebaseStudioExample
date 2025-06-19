@@ -155,14 +155,14 @@ export default function HomePage() {
                   <Mail className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
                   <div>
                     <h3 className="font-semibold">{t('contactInfoEmailUs')}</h3>
-                    <a href="mailto:hello@adcraft.studio" className="text-muted-foreground hover:text-primary">hello@adcraft.studio</a>
+                    <a href="mailto:hello@adcraft.studio" className="text-muted-foreground hover:text-primary">zurab.filfani@gmail.com</a>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Phone className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
                   <div>
                     <h3 className="font-semibold">{t('contactInfoPhoneUs')}</h3>
-                    <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary">+1 (234) 567-890</a>
+                    <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary">+(995) 599 577 501</a>
                   </div>
                 </div>
               </div>
