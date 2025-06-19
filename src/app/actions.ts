@@ -1,7 +1,8 @@
+
 'use server';
 
 import { z } from 'zod';
-// nodemailer import removed
+import emailjs from '@emailjs/browser';
 
 // Schema for contact form
 const ContactFormSchema = z.object({
@@ -40,20 +41,37 @@ export async function handleContactFormSubmit(
 
   const { name, email, message } = validatedFields.data;
 
-  // Email sending logic removed.
-  // You can add your custom email logic here later.
+  const serviceId = process.env.EMAILJS_SERVICE_ID;
+  const templateId = process.env.EMAILJS_TEMPLATE_ID;
+  const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+
+  if (!serviceId || !templateId || !publicKey) {
+    console.error('EmailJS environment variables are not set.');
+    return {
+      message: 'Configuration error: EmailJS credentials are not set on the server.',
+      success: false,
+    };
+  }
+
+  const templateParams = {
+    from_name: name,
+    from_email: email,
+    to_name: 'AdCraft Studio Team', // Or your company name
+    message: message,
+  };
 
   try {
-    // Simulate successful processing of the form data
-    console.log('Contact Form Submitted (no email sent):', validatedFields.data);
+    await emailjs.send(serviceId, templateId, templateParams, publicKey);
     return {
-      message: 'Thank you for your message! We have received your inquiry.',
+      message: 'Thank you for your message! We have received your inquiry and will get back to you soon.',
       success: true,
     };
   } catch (error) {
-    console.error('Failed to process contact form:', error);
+    console.error('Failed to send email via EmailJS:', error);
+    // It's good practice to avoid exposing too much detail about the error to the client.
+    // You might want to log the detailed error on the server for debugging.
     return {
-      message: 'Failed to process your message. Please try again later.',
+      message: 'Failed to send your message due to a server error. Please try again later or contact us directly.',
       success: false,
     };
   }
