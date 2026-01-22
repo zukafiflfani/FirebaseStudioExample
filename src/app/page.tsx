@@ -1,12 +1,11 @@
-
 'use client';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, GalleryHorizontalEnd, Bus, Monitor } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { ArrowRight, GalleryHorizontalEnd, Bus, Monitor, Phone, Mail, MapPin } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const servicesData = [
@@ -109,6 +108,59 @@ export default function HomePage() {
             {t('portfolioDescription')}
           </p>
           <WorksSlideshow key={language} /> {/* Add key to re-render on language change if it uses translations internally */}
+        </div>
+      </section>
+      
+      {/* Contact Section */}
+      <section id="contact" className="py-16 md:py-20 bg-secondary">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-primary">
+            {t('contactTitle')}
+          </h2>
+          <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+            {t('contactDescription')}
+          </p>
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <Card className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col justify-center items-center p-6">
+              <div className="flex justify-center mb-4">
+                <Phone className="h-10 w-10 text-primary" />
+              </div>
+              <CardHeader className="p-0 mb-2">
+                <CardTitle className="text-2xl">{t('contactPhone')}</CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <a href={`tel:${t('contactPhoneNumber')}`} className="text-lg text-foreground hover:underline">
+                  {t('contactPhoneNumber')}
+                </a>
+              </CardContent>
+            </Card>
+            <Card className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col justify-center items-center p-6">
+              <div className="flex justify-center mb-4">
+                <Mail className="h-10 w-10 text-primary" />
+              </div>
+              <CardHeader className="p-0 mb-2">
+                <CardTitle className="text-2xl">{t('contactEmail')}</CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <a href={`mailto:${t('contactEmailAddress')}`} className="text-lg text-foreground hover:underline">
+                  {t('contactEmailAddress')}
+                </a>
+              </CardContent>
+            </Card>
+            <Card className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col justify-center items-center p-6">
+              <div className="flex justify-center mb-4">
+                <MapPin className="h-10 w-10 text-primary" />
+              </div>
+              <CardHeader className="p-0 mb-2">
+                <CardTitle className="text-2xl">{t('contactInfoOffice')}</CardTitle>
+              </CardHeader>
+              <CardContent className="p-0">
+                <p className="text-lg text-foreground">
+                  {t('contactInfoOfficeAddress')}
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
     </div>
