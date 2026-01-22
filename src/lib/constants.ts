@@ -6,7 +6,7 @@ import type { NavLinkConfig, WorkItemConfig } from '@/types';
 export const NAV_LINKS_CONFIG: NavLinkConfig[] = [
   { href: '/#home', labelKey: 'home' },
   { href: '/#works', labelKey: 'ourWorks' },
-  { href: '/#contact', labelKey: 'contact' },
+  { href: '/#contact', labelKey: 'contactUs' },
 ];
 
 export const WORKS_DATA_CONFIG: WorkItemConfig[] = [
