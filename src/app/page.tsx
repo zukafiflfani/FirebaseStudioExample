@@ -126,10 +126,10 @@ export default function HomePage() {
                 <Phone className="h-10 w-10 text-primary" />
               </div>
               <CardHeader className="p-0 mb-2">
-                <CardTitle className="text-2xl">{t('contactPhone')}</CardTitle>
+                <CardTitle className="text-xl">{t('contactPhone')}</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <p className="text-xl font-bold text-foreground">{t('contactPhoneNumber')}</p>
+                <p className="text-3xl font-bold text-foreground">{t('contactPhoneNumber')}</p>
               </CardContent>
             </Card>
             <Card className="text-center shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col justify-center items-center p-6">
@@ -137,10 +137,10 @@ export default function HomePage() {
                 <Mail className="h-10 w-10 text-primary" />
               </div>
               <CardHeader className="p-0 mb-2">
-                <CardTitle className="text-2xl">{t('contactEmail')}</CardTitle>
+                <CardTitle className="text-xl">{t('contactEmail')}</CardTitle>
               </CardHeader>
               <CardContent className="p-0">
-                <a href={`mailto:${t('contactEmailAddress')}`} className="text-xl font-bold text-foreground hover:underline">
+                <a href={`mailto:${t('contactEmailAddress')}`} className="text-3xl font-bold text-foreground hover:underline">
                   {t('contactEmailAddress')}
                 </a>
               </CardContent>
