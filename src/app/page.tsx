@@ -6,8 +6,7 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, GalleryHorizontalEnd, Bus, Monitor, Mail, Phone, MapPin } from 'lucide-react';
-import { Skeleton } from '@/components/ui/skeleton';
+import { ArrowRight, GalleryHorizontalEnd, Bus, Monitor } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 
 const servicesData = [
@@ -32,18 +31,6 @@ const WorksSlideshow = dynamic(() => import('@/components/works/WorksSlideshow')
   loading: () => (
     <div className="flex justify-center items-center h-64">
       <p>Loading slideshow...</p>
-    </div>
-  ),
-  ssr: false, 
-});
-
-const ContactFormComponent = dynamic(() => import('@/components/contact/ContactForm'), {
-  loading: () => (
-    <div className="space-y-8 max-w-xl mx-auto bg-card p-8 rounded-lg shadow-xl">
-      <Skeleton className="h-10 w-full" />
-      <Skeleton className="h-10 w-full" />
-      <Skeleton className="h-24 w-full" />
-      <Skeleton className="h-10 w-full" />
     </div>
   ),
   ssr: false, 
@@ -90,11 +77,6 @@ export default function HomePage() {
                 {t('heroButtonViewWork')} <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/#contact">
-                {t('heroButtonGetInTouch')}
-              </Link>
-            </Button>
           </div>
         </div>
       </section>
@@ -127,54 +109,6 @@ export default function HomePage() {
             {t('portfolioDescription')}
           </p>
           <WorksSlideshow key={language} /> {/* Add key to re-render on language change if it uses translations internally */}
-        </div>
-      </section>
-
-      {/* Contact Us Section */}
-      <section id="contact" className="py-16 md:py-20 bg-secondary">
-        <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl font-bold text-center mb-6 text-primary">
-            {t('contactTitle')}
-          </h1>
-          <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
-            {t('contactDescription')}
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div>
-              <h2 className="text-2xl font-semibold mb-6">{t('contactInfoTitle')}</h2>
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <MapPin className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
-                  <div>
-                    <h3 className="font-semibold">{t('contactInfoOffice')}</h3>
-                    <p className="text-muted-foreground">{t('contactInfoOfficeAddress')}</p>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <Mail className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
-                  <div>
-                    <h3 className="font-semibold">{t('contactInfoEmailUs')}</h3>
-                    <a href="mailto:hello@adcraft.studio" className="text-muted-foreground hover:text-primary">zurab.filfani@gmail.com</a>
-                  </div>
-                </div>
-                <div className="flex items-start">
-                  <Phone className="h-6 w-6 text-primary mr-4 mt-1 shrink-0" />
-                  <div>
-                    <h3 className="font-semibold">{t('contactInfoPhoneUs')}</h3>
-                    <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary">+(995) 599 577 501</a>
-                  </div>
-                </div>
-              </div>
-              <p className="mt-8 text-sm text-muted-foreground">
-                {t('contactInfoOfficeHours')}
-              </p>
-            </div>
-
-            <div>
-              <ContactFormComponent key={language + 'form'} /> {/* Add key to re-render on language change for labels */}
-            </div>
-          </div>
         </div>
       </section>
     </div>
