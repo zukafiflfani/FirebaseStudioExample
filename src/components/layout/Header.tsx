@@ -91,7 +91,7 @@ export default function Header() {
           onClick={(e) => handleSmoothScroll(e, '/#home')}
           aria-label={`${appName} homepage`}
         >
-          <Image src="/logo.png" alt={`${appName} Logo`} width={80} height={80} priority style={{ objectFit: 'contain' }} />
+          <Image src="/logo.svg" alt={`${appName} Logo`} width={80} height={80} priority style={{ objectFit: 'contain' }} />
         </Link>
 
         <nav className="hidden md:flex space-x-6 items-center">

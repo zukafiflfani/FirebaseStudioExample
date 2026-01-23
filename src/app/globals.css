@@ -1,36 +1,37 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 38 17% 94%; /* #F2F0EC soft off-white */
-    --foreground: 0 0% 10%; /* #1A1A1A very dark gray - Was 0 0% 20% */
+    --background: 231 43% 94%; /* #E8EAF6 */
+    --foreground: 240 10% 3.9%; /* dark blue-gray */
 
     --card: 0 0% 100%; /* White for cards */
-    --card-foreground: 0 0% 10%; /* #1A1A1A very dark gray - Was 0 0% 20% */
+    --card-foreground: 240 10% 3.9%;
 
     --popover: 0 0% 100%; /* White for popovers */
-    --popover-foreground: 0 0% 10%; /* #1A1A1A very dark gray - Was 0 0% 20% */
+    --popover-foreground: 240 10% 3.9%;
 
-    --primary: 357 68% 46%; /* #C8232B rich red */
+    --primary: 231 50% 48%; /* #3F51B5 */
     --primary-foreground: 0 0% 100%; /* White text on primary */
 
-    --secondary: 38 10% 88%; /* A slightly darker/muted off-white for secondary elements */
-    --secondary-foreground: 357 68% 46%; /* Primary red for text on secondary */
+    --secondary: 232 46% 88%; /* Lighter blue for secondary elements */
+    --secondary-foreground: 231 50% 48%; /* Primary blue for text on secondary */
 
-    --muted: 38 10% 90%; /* For muted elements */
-    --muted-foreground: 0 0% 35%; /* #595959 darker gray - Was 0 0% 45.1% */
+    --muted: 231 30% 92%; /* Even lighter blue for muted elements */
+    --muted-foreground: 240 5% 40%; /* Muted blue-gray */
 
-    --accent: 357 72% 36%; /* #A21922 deep red for buttons etc. */
+    --accent: 258 46% 55%; /* #7E57C2 */
     --accent-foreground: 0 0% 100%; /* White text on accent */
 
     --destructive: 0 84.2% 60.2%; /* Default destructive */
     --destructive-foreground: 0 0% 98%; /* Default destructive foreground */
 
-    --border: 38 10% 80%; /* Border color related to background */
-    --input: 38 10% 85%; /* Input background */
-    --ring: 357 72% 40%; /* Ring color to accent (matches button focus) */
+    --border: 231 20% 85%; /* Border color related to background */
+    --input: 231 20% 88%; /* Input background */
+    --ring: 231 50% 48%; /* Ring color to match primary */
 
     --radius: 0.5rem;
 
@@ -54,25 +55,25 @@
 
   .dark {
     /* Default dark theme - user didn't request dark mode, so this is fallback */
-    --background: 0 0% 3.9%;
+    --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
+    --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
+    --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
-    --primary: 357 60% 50%; /* Adjusted red for dark mode */
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 14.9%;
+    --primary: 231 50% 52%; /* Adjusted blue for dark mode */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
+    --muted: 240 3.7% 15.9%;
     --muted-foreground: 0 0% 63.9%;
-    --accent: 357 65% 45%; /* Adjusted deep red for dark mode */
-    --accent-foreground: 0 0% 98%;
+    --accent: 258 50% 60%; /* Adjusted purple for dark mode */
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 357 60% 55%; /* Adjusted ring for dark mode */
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 231 50% 52%; /* Adjusted ring for dark mode */
     
     /* Sidebar dark variables */
     --sidebar-background: 240 5.9% 10%;
